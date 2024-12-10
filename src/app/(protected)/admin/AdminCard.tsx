@@ -1,16 +1,11 @@
 "use client";
-import React, { useState } from "react";
-import {
-  AiFillStar,
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiOutlineStar,
-} from "react-icons/ai";
-import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
-import updateProduct from "@/app/utils/updateProduct";
-import { revalidatePath } from "next/cache";
-import { useRouter } from "next/navigation";
 import starProduct from "@/app/utils/starProduct";
+import updateProduct from "@/app/utils/updateProduct";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 
 export const AdminCard = ({
   id,
@@ -129,7 +124,6 @@ export const AdminCard = ({
       photo: null,
       sizes,
       flavors,
-      isStarred,
     });
     setEditMode(false);
   };
@@ -160,7 +154,9 @@ export const AdminCard = ({
               onChange={handleFileChange}
               className="w-full text-sm text-gray-700 border border-gray-300 rounded px-2 py-1"
             />
-            <img
+            <Image
+              height={1000}
+              width={1000}
               src={
                 formState.photo ? URL.createObjectURL(formState.photo) : photo
               }
@@ -293,11 +289,14 @@ export const AdminCard = ({
       ) : (
         // View Mode
         <div>
-          <img
+          <Image
+            width={1000}
+            height={1000}
             src={photo}
             alt={name}
             className="h-40 w-full object-cover rounded"
           />
+
           <h2 className="text-lg font-bold mt-2 text-gray-900">{name}</h2>
           <p className="text-sm text-gray-700">{description}</p>
           <p className="text-sm font-bold text-gray-900 mt-1">${price}</p>

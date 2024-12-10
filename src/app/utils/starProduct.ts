@@ -1,4 +1,4 @@
-export default async function starProduct(id: string): Promise<any> {
+export default async function starProduct(id: string): Promise<unknown> {
   console.log(id);
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -9,6 +9,5 @@ export default async function starProduct(id: string): Promise<any> {
   });
 
   const data = await res.json();
-  console.log(data);
   return data;
 }

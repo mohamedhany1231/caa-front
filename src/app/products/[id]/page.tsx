@@ -2,13 +2,14 @@ import { FaCartPlus } from "react-icons/fa";
 import FlavorSizeSelector from "./FlavorSizeSelector";
 import AddToCart from "@/app/components/AddToCart";
 import fetchProduct from "@/app/utils/fetchProduct";
+import Image from "next/image";
 
 const ProductOverview = async ({
   params,
   searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: any;
+  searchParams: Promise<{ flavor: string; size: string }>;
 }) => {
   const { id } = await params; // Get the product ID from URL params
   const product = await fetchProduct(id);
@@ -26,7 +27,9 @@ const ProductOverview = async ({
           {/* Image Section */}
           <div className="md:flex-1 px-4">
             <div className=" max-h-[60vh] md:h-[max(460px,60vh)]  rounded-lg bg-gray-100 overflow-hidden mb-4 border border-gray-300">
-              <img
+              <Image
+                width={1000}
+                height={1000}
                 className="w-full h-full object-cover"
                 src={product.photo}
                 alt={product.name}

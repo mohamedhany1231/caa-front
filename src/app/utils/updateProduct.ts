@@ -13,7 +13,7 @@ interface iProduct {
 export default async function updateProduct(
   product: FormData,
   id: string
-): Promise<any> {
+): Promise<iProduct> {
   console.log(id);
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -25,6 +25,5 @@ export default async function updateProduct(
   });
 
   const data = await res.json();
-  console.log(data);
   return data;
 }

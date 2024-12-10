@@ -15,12 +15,12 @@ interface Order {
   total: number;
 }
 
-interface AdminOrdersPageProps {
-  orders: Order[];
-  totalItems: number;
-  currentPage: number;
-  itemsPerPage: number;
-}
+// interface AdminOrdersPageProps {
+//   orders: Order[];
+//   totalItems: number;
+//   currentPage: number;
+//   itemsPerPage: number;
+// }
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const { page = 1 } = context.query;
@@ -42,12 +42,16 @@ interface AdminOrdersPageProps {
 //   };
 // };
 
-export default async function AdminOrdersPage({
-  totalItems,
-  currentPage,
-  itemsPerPage,
-}: AdminOrdersPageProps) {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const { page: currentPage } = await searchParams;
+  const itemsPerPage = 8;
   const c = await cookies();
+  // FIXME: edit items num
+  const totalItems = 12;
   const { orders, count, error } = await fetchOrders({
     token: c.get("jwt")?.value,
   });
@@ -67,7 +71,7 @@ export default async function AdminOrdersPage({
       <Pagination
         totalItems={totalItems}
         itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
+        currentPage={+(currentPage || 0)}
       />
     </div>
   );

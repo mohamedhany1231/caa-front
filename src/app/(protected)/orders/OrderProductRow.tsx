@@ -23,7 +23,8 @@ export function OrderProductRow({
   if (!product?.name)
     return (
       <p className=" text-red-500 text-center">
-        item couldn't be found size : {size} flavor : {flavor} count : {count}
+        item couldn&apos;t be found size : {size} flavor : {flavor} count :{" "}
+        {count}
       </p>
     );
   return (
