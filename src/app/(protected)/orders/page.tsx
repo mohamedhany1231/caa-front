@@ -51,6 +51,8 @@ export default async function Page({
   const itemsPerPage = 8;
   const c = await cookies();
   const token = c.get("_vercel_jwt")?.value || c.get("jwt")?.value;
+  console.log(c);
+  console.log("token");
   console.log(token);
   // FIXME: edit items num
   const totalItems = 8;

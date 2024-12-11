@@ -26,6 +26,7 @@ export default async function fetchOrders({
   count: number;
   error?: string;
 }> {
+  console.log("fetched orders token ", token);
   try {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
