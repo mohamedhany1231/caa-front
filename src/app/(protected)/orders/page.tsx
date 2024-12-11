@@ -50,11 +50,12 @@ export default async function Page({
   const { page: currentPage } = await searchParams;
   const itemsPerPage = 8;
   const c = await cookies();
-  console.log(c);
+  const token = c.get("_vercel_jwt")?.value || c.get("jwt")?.value;
+  console.log(token);
   // FIXME: edit items num
   const totalItems = 8;
   const { orders, count, error } = await fetchOrders({
-    token: c.get("jwt")?.value,
+    token,
   });
   return (
     <div className="container mx-auto px-4 py-16">
