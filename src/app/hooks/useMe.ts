@@ -5,15 +5,16 @@ const useMe = () => {
 
   const fetchMe = async (): Promise<{
     data: {
-      name: string;
-      email: string;
-      _id: string;
+      name?: string;
+      email?: string;
+      _id?: string;
     };
   }> => {
     const response = await fetch(`${backendUrl}/users/me`, {
       credentials: "include",
     });
     if (!response.ok) {
+      return { data: {} };
       throw new Error("Failed to fetch user details");
     }
 
