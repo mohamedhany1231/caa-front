@@ -50,8 +50,9 @@ export default async function Page({
   const { page: currentPage } = await searchParams;
   const itemsPerPage = 8;
   const c = await cookies();
+  console.log(c);
   // FIXME: edit items num
-  const totalItems = 12;
+  const totalItems = 8;
   const { orders, count, error } = await fetchOrders({
     token: c.get("jwt")?.value,
   });
@@ -71,7 +72,7 @@ export default async function Page({
       <Pagination
         totalItems={totalItems}
         itemsPerPage={itemsPerPage}
-        currentPage={+(currentPage || 0)}
+        currentPage={+(currentPage || 1)}
       />
     </div>
   );
