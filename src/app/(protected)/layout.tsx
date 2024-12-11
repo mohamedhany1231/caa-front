@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function Layout({ children }) {
   const { error, isLoading, me } = useMe();
   const router = useRouter();
+  console.log(me);
   useEffect(() => {
     if (!isLoading && !me?._id) router.replace("/login");
   }, [me, router, isLoading]);
